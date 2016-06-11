@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -28,13 +27,14 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi there, I love %s", r.URL.Path[1:])
-}
-
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	t, _ := template.ParseFiles(tmpl + ".html")
 	t.Execute(w, p)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	page := &Page{Title: "CRC"}
+	renderTemplate(w, "content/index", page)
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
@@ -53,6 +53,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	http.HandleFunc("/", handler)
 	http.HandleFunc("/view/", viewHandler)
 	http.HandleFunc("/edit/", editHandler)
 	log.Fatal(http.ListenAndServe(":6080", nil))
