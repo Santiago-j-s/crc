@@ -4,13 +4,13 @@ import (
 	"testing"
 )
 
-type sum struct {
-	in []byte
+type crcData struct {
+	in   []byte
 	poly byte
-	out byte
+	crc  byte
 }
 
-var tableSum = []sum {
+var testTable = []crcData{
 	{[]byte{0xda}, 0xcc, 0xe4},
 	{[]byte{0xda, 0x72}, 0xcc, 0x98},
 	{[]byte{0x67, 0x54}, 0x85, 0x00},
@@ -18,24 +18,25 @@ var tableSum = []sum {
 }
 
 func TestSum(t *testing.T) {
-	for _, test := range tableSum {
-		s := Sum(test.in, MakeTable(test.poly))
-		if s != byte(test.out) {
-			t.Errorf("Data: %x Poly: %x Expected: %x Received: %x\n", test.in, test.poly, test.out, s)
+	for _, test := range testTable {
+		tab := MakeTable(test.poly)
+		crc := tab.Crc(test.in)
+		if crc != byte(test.crc) {
+			t.Errorf("Data: %x Poly: %x Expected: %x Received: %x\n", test.in, test.poly, test.crc, crc)
 		}
 	}
 }
 
-var result byte;
+var result byte
 
-func benchmarkSum(s sum, b *testing.B) {
+func benchmarkSum(s crcData, b *testing.B) {
 	tab := MakeTable(s.poly)
-	var r byte;
+	var r byte
 	for i := 0; i < b.N; i++ {
-		r = Sum(s.in, tab)
+		r = tab.Crc(s.in)
 	}
 	result = r
 }
 
-func BenchmarkSum0(b *testing.B) { benchmarkSum(tableSum[0], b) }
-func BenchmarkSum1(b *testing.B) { benchmarkSum(tableSum[1], b) }
+func BenchmarkSum0(b *testing.B) { benchmarkSum(testTable[0], b) }
+func BenchmarkSum1(b *testing.B) { benchmarkSum(testTable[1], b) }

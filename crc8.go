@@ -1,4 +1,4 @@
-// Copyright 2016, Dibez Pablo, Santana Santiago. 
+// Copyright 2016, Dibez Pablo, Santana Santiago.
 // All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
@@ -10,12 +10,12 @@
 //    RefIn  : False (MSB)
 //    RefOut : False
 //    XorOut : 0000
-// 
+//
 // See http://chrisballance.com/wp-content/uploads/2015/10/CRC-Primer.html for more information.
 package crc8
 
 // Size of a CRC-8 checksum in bytes.
-const Size = 2;
+const Size = 2
 
 // Table is a 256-word table representing the polynomial for efficient processing.
 type Table [256]byte
@@ -38,10 +38,10 @@ func MakeTable(poly byte) *Table {
 }
 
 // Sum performs the checksum of data using the polynomial defined by the Table
-func Sum(data []byte, tab *Table) byte {
+func (tab *Table) Crc(data []byte) byte {
 	crc := byte(0)
 	for _, v := range data {
-		crc = tab[byte(crc) ^ v]
+		crc = tab[byte(crc)^v]
 	}
 	return crc
 }

@@ -25,7 +25,3 @@ _testmain.go
 
 # VIM
 *.swp
-
-# Executables
-server
-test_with_crc
