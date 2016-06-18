@@ -17,7 +17,7 @@ var testTable = []crcData{
 	{[]byte{0x67, 0x55}, 0xf3, 0x01},
 }
 
-func TestSum(t *testing.T) {
+func TestCrc(t *testing.T) {
 	for _, test := range testTable {
 		tab := MakeTable(test.poly)
 		crc := tab.Crc(test.in)
@@ -29,7 +29,7 @@ func TestSum(t *testing.T) {
 
 var result byte
 
-func benchmarkSum(s crcData, b *testing.B) {
+func benchmarkCrc(s crcData, b *testing.B) {
 	tab := MakeTable(s.poly)
 	var r byte
 	for i := 0; i < b.N; i++ {
@@ -38,5 +38,5 @@ func benchmarkSum(s crcData, b *testing.B) {
 	result = r
 }
 
-func BenchmarkSum0(b *testing.B) { benchmarkSum(testTable[0], b) }
-func BenchmarkSum1(b *testing.B) { benchmarkSum(testTable[1], b) }
+func BenchmarkCrc0(b *testing.B) { benchmarkCrc(testTable[0], b) }
+func BenchmarkCrc1(b *testing.B) { benchmarkCrc(testTable[1], b) }
