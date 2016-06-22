@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Santiago-j-s/crc8"
-	"github.com/Santiago-j-s/crc8/server/analysis"
+	"github.com/Santiago-j-s/crc8/analysis"
 	"github.com/Santiago-j-s/stringutil"
 )
 

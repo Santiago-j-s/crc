@@ -3,7 +3,7 @@ package analysis
 
 import (
 	"github.com/Santiago-j-s/crc8"
-	"github.com/Santiago-j-s/crc8/server/analysis/hamming"
+	"github.com/Santiago-j-s/crc8/analysis/hamming"
 )
 
 func crcMap(poly byte) map[int]byte {
