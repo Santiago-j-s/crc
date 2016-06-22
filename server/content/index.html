@@ -4,7 +4,12 @@
 <head>
     <title>{{.Title}}</title>
     <link rel="stylesheet" href='http://localhost:6080/css/pure-min.css'>
+    <link rel="stylesheet" href='http://localhost:6080/css/base.css'>
 </head>
+
+<style>
+
+</style>
 
 <body>
     {{ template "menu" .}}
@@ -15,7 +20,7 @@
     </header>
     <article>
         <section>
-            <form action="/crc" method=POST>
+            <form class="pure-form pure-form-stacked" action="/crc" method=POST>
                 <div>
                     <label for="msg">Ingresar Mensaje</label>
                     <input type="text" title="Ingrese el mensaje a codificar" name="msg" id="msg" placeholder="10101010">
@@ -25,7 +30,7 @@
                     <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
                 </div>
                 <div>
-                    <button type="submit">Calcular</button>
+                    <button class="pure-button" type="submit">Calcular</button>
                 </div>
             </form>
         </section>
@@ -37,10 +42,8 @@
         </section>
     </article>
     <footer>
-        <ul>
-            <li>Dibez Pablo</li>
-            <li>Santana Santiago</li>
-        </ul>
+        Dibez Pablo,
+        Santana Santiago
     </footer>
 </body>
 

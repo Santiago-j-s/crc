@@ -4,8 +4,8 @@
 <head>
     <title>{{.Title}}</title>
     <link rel="stylesheet" href='http://localhost:6080/css/pure-min.css'>
+    <link rel="stylesheet" href='http://localhost:6080/css/base.css'>
 </head>
-
 
 <body>
     {{ template "menu" . }}
@@ -15,14 +15,14 @@
         </hgroup>
     </header>
     <article>
-        <section>
-            <form action="/hamming" method=POST>
+        <section class="pure-g">
+            <form class="pure-u-1-12 pure-form pure-form-stacked" action="/hamming" method=POST>
                 <div>
                     <label for="poly">Ingresar P(x)</label>
                     <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
                 </div>
                 <div>
-                    <button type="submit">Calcular</button>
+                    <button class="pure-button" type="submit">Calcular</button>
                 </div>
             </form>
         </section>
@@ -34,10 +34,8 @@
         </section>
     </article>
     <footer>
-        <ul>
-            <li>Dibez Pablo</li>
-            <li>Santana Santiago</li>
-        </ul>
+        Dibez Pablo,
+        Santana Santiago
     </footer>
 </body>
 
