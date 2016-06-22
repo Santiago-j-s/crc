@@ -3,7 +3,7 @@ package analysis
 
 import (
 	"github.com/Santiago-j-s/crc8"
-	"github.com/Santiago-j-s/crc8/server/model/hamming"
+	"github.com/Santiago-j-s/crc8/server/analysis/hamming"
 )
 
 func crcMap(poly byte) map[int]byte {
@@ -17,7 +17,7 @@ func crcMap(poly byte) map[int]byte {
 	return crc
 }
 
-func HammingDistance(poly byte) (map[int]int, error) {
+func HammingDistance(poly byte) map[int]int {
 	cnt := make(map[int]int)
 	crc := crcMap(poly)
 
@@ -26,9 +26,9 @@ func HammingDistance(poly byte) (map[int]int, error) {
 		v2 := []byte{byte(n), crc[n]}
 		d, err := hamming.Distance(v1, v2)
 		if err != nil {
-			return nil, err
+			panic("the lengths of v1 and v2 must be equal")
 		}
 		cnt[d]++
 	}
-	return cnt, nil
+	return cnt
 }

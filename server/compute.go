@@ -4,12 +4,51 @@ import (
 	"fmt"
 
 	"github.com/Santiago-j-s/crc8"
+	"github.com/Santiago-j-s/crc8/server/analysis"
 	"github.com/Santiago-j-s/stringutil"
 )
 
+// verifyLen returns an error if s is not of length l
+func verifyLen(s string, l int) error {
+	if len(s) != l {
+		return fmt.Errorf("Only strings of length %d are allowed", l)
+	}
+	return nil
+}
+
+func verifyLen8(s string) error {
+	return verifyLen(s, 8)
+}
+
+// verifyBinaryString returns an error if s is not composed only of characters '0' and '1'
+func verifyBinaryString(s string) error {
+	for _, c := range s {
+		if c != '0' && c != '1' {
+			return fmt.Errorf("%v isn't a binary number", s)
+		}
+	}
+	return nil
+}
+
+func verifyBinaryStrings(str ...string) error {
+	for _, s := range str {
+		if err := verifyBinaryString(s); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func firstBitSet(s string) error {
+	if s[0] != '1' {
+		return fmt.Errorf("The first digit of %v must be an 1", s)
+	}
+	return nil
+}
+
 func readByte(s string) (c byte, err error) {
 	if len(s)%8 != 0 {
-		return 0, fmt.Errorf("InputError")
+		return 0, fmt.Errorf("InputError. Length must be multiple of 8.")
 	}
 
 	var b byte
@@ -25,21 +64,60 @@ func readByte(s string) (c byte, err error) {
 	return b, nil
 }
 
-func crc(poly string, msg string) string {
-	bPoly, err := readByte(poly)
+func crc(poly string, msg string) (string, error) {
+	if err := verifyLen(poly, 8); err != nil {
+		return "", err
+	}
+	
+	if err := verifyBinaryStrings(poly, msg); err != nil {
+		return "", err
+	}
+	
+	if err := firstBitSet(poly); err != nil {
+		return "", err
+	}
 
+	bPoly, err := readByte(poly)
 	if err != nil {
-		panic("InputError")
+		return "", err
 	}
 
 	bMsg, err := readByte(msg)
-
 	if err != nil {
-		panic("InputError")
+		return "", err
 	}
 
 	tab := crc8.MakeTable(bPoly)
 	chk := tab.Sum([]byte{bMsg})
 	res := fmt.Sprintf("%08b", chk)
-	return res
+	return res, nil
+}
+
+func hamming(poly string) (string, error) {
+	if err := verifyLen(poly, 8); err != nil {
+		return "", err
+	}
+	
+	if err := verifyBinaryString(poly); err != nil {
+		return "", err
+	}
+	
+	if err := firstBitSet(poly); err != nil {
+		return "", err
+	}
+
+	bPoly, err := readByte(poly)
+
+	if err != nil {
+		return "", err
+	}
+
+	m := analysis.HammingDistance(bPoly)
+	var s string
+
+	for key := 2; key <= 10; key++ {
+		s += fmt.Sprintf("%d errores de %d bits.\n", m[key], key)
+	}
+
+	return s, nil
 }

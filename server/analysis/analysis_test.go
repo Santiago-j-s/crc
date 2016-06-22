@@ -34,10 +34,7 @@ var testTable = []data{
 
 func TestHammingDistance(t *testing.T) {
 	for _, test := range testTable {
-		m, err := HammingDistance(test.in)
-		if err != nil {
-			t.Errorf("Error for input: %v", test.in)
-		}
+		m := HammingDistance(test.in)
 
 		b := true
 		for key, value := range test.out {

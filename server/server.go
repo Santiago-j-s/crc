@@ -38,14 +38,37 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "content/index", page)
 }
 
+func handlerAnalisis(w http.ResponseWriter, r *http.Request) {
+	page := &Page{Title: "Análisis de Detección"}
+	renderTemplate(w, "content/analisis", page)
+}
+
 func handlerCrc(w http.ResponseWriter, r *http.Request) {
 	poly := r.FormValue("poly")
 	msg := r.FormValue("msg")
-	res := crc(poly, msg)
-	fmt.Fprintf(w, res)
+
+	c, err := crc(poly, msg)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+	fmt.Fprintf(w, c)
+}
+
+func handlerHamming(w http.ResponseWriter, r *http.Request) {
+	poly := r.FormValue("poly")
+
+	h, err := hamming(poly)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+	fmt.Fprintf(w, h)
 }
 
 func main() {
+	http.HandleFunc("/hamming", handlerHamming)
+	http.HandleFunc("/analisis", handlerAnalisis)
 	http.HandleFunc("/crc", handlerCrc)
 	http.HandleFunc("/", handler)
 
