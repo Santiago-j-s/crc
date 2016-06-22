@@ -4,14 +4,14 @@
 // license that can be found in the LICENSE file.
 
 // Package crc8 implements the 8-bit cyclic redundancy check,
-// with some fixed parameters of the Rocksoft Model:
+// with the specification:
 //    Width  : 8
 //    Init   : 0000
 //    RefIn  : False (MSB)
 //    RefOut : False
 //    XorOut : 0000
 //
-// See http://chrisballance.com/wp-content/uploads/2015/10/CRC-Primer.html for more information.
+// See http://www.ross.net/crc/crcpaper.html for more information.
 package crc8
 
 // Size of a CRC-8 checksum in bytes.
@@ -37,8 +37,8 @@ func MakeTable(poly byte) *Table {
 	return t
 }
 
-// Sum performs the checksum of data using the polynomial defined by the Table
-func (tab *Table) Crc(data []byte) byte {
+// Crc performs the checksum of data using the polynomial defined by the Table
+func (tab *Table) Sum(data []byte) byte {
 	crc := byte(0)
 	for _, v := range data {
 		crc = tab[byte(crc)^v]

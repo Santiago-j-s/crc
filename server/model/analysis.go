@@ -6,13 +6,12 @@ import (
 	"github.com/Santiago-j-s/crc8/server/model/hamming"
 )
 
-
 func crcMap(poly byte) map[int]byte {
 	crc := make(map[int]byte)
 	tab := crc8.MakeTable(poly)
 
 	for i := 1; i < 256; i++ {
-		crc[i] = tab.Crc([]byte{byte(i)})
+		crc[i] = tab.Sum([]byte{byte(i)})
 	}
 
 	return crc

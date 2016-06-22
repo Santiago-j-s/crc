@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -37,24 +38,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "content/index", page)
 }
 
-func viewHandler(w http.ResponseWriter, r *http.Request) {
-	title := r.URL.Path[len("/view/"):]
-	page, _ := loadPage(title)
-	renderTemplate(w, "view", page)
-}
-
-func editHandler(w http.ResponseWriter, r *http.Request) {
-	title := r.URL.Path[len("/edit/"):]
-	page, err := loadPage(title)
-	if err != nil {
-		page = &Page{Title: title}
-	}
-	renderTemplate(w, "edit", page)
+func handlerCrc(w http.ResponseWriter, r *http.Request) {
+	poly := r.FormValue("poly")
+	msg := r.FormValue("msg")
+	res := crc(poly, msg)
+	fmt.Fprintf(w, res)
 }
 
 func main() {
+	http.HandleFunc("/crc", handlerCrc)
 	http.HandleFunc("/", handler)
-	http.HandleFunc("/view/", viewHandler)
-	http.HandleFunc("/edit/", editHandler)
+
 	log.Fatal(http.ListenAndServe(":6080", nil))
 }

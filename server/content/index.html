@@ -13,10 +13,14 @@
     </header>
     <article>
         <section>
-            <form>
+            <form action="/crc" method=POST>
                 <div>
                     <label for="poly">Ingresar P(x)</label>
-                    <input title="Ingrese el polinomio" type="text" id="poly" placeholder="11101010">
+                    <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
+                </div>
+                <div>
+                    <label for="msg">Ingresar Mensaje</label>
+                    <input type="text" title="Ingrese el mensaje a codificar" name="msg" id="msg" placeholder="10101010">
                 </div>
                 <div>
                     <button type="submit">Calcular</button>
