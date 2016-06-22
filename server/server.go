@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -14,22 +13,8 @@ type Page struct {
 	Body  []byte
 }
 
-func (p *Page) save() error {
-	filename := p.Title + ".txt"
-	return ioutil.WriteFile(filename, p.Body, 0600)
-}
-
-func loadPage(title string) (*Page, error) {
-	filename := title + ".txt"
-	body, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return nil, err
-	}
-	return &Page{Title: title, Body: body}, nil
-}
-
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
-	t, _ := template.ParseFiles(tmpl + ".html")
+	t, _ := template.ParseFiles(tmpl+".html", "content/menu.html")
 	t.Execute(w, p)
 }
 
@@ -67,6 +52,9 @@ func handlerHamming(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	css := http.StripPrefix("/css/", http.FileServer(http.Dir("css/")))
+	http.Handle("/css/", css)
+
 	http.HandleFunc("/hamming", handlerHamming)
 	http.HandleFunc("/analisis", handlerAnalisis)
 	http.HandleFunc("/crc", handlerCrc)

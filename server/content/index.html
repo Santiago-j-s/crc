@@ -3,9 +3,11 @@
 
 <head>
     <title>{{.Title}}</title>
+    <link rel="stylesheet" href='http://localhost:6080/css/pure-min.css'>
 </head>
 
 <body>
+    {{ template "menu" .}}
     <header>
         <hgroup>
             <h1>{{.Title}}</h1>
