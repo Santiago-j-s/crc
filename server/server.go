@@ -1,3 +1,9 @@
+// Copyright 2016
+// Dibez Pablo pdibez@gmail.com
+// Santana Santiago santana.santiago@gmail.com
+// All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 package main
 
 import (
@@ -11,6 +17,7 @@ import (
 type Page struct {
 	Title string
 	Body  []byte
+	//TODO: add js and css
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
@@ -54,6 +61,9 @@ func handlerHamming(w http.ResponseWriter, r *http.Request) {
 func main() {
 	css := http.StripPrefix("/css/", http.FileServer(http.Dir("css/")))
 	http.Handle("/css/", css)
+	
+	js := http.StripPrefix("/js/", http.FileServer(http.Dir("js/")))
+	http.Handle("/js/", js)
 
 	http.HandleFunc("/hamming", handlerHamming)
 	http.HandleFunc("/analisis", handlerAnalisis)

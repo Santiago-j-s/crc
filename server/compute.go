@@ -1,3 +1,9 @@
+// Copyright 2016
+// Dibez Pablo pdibez@gmail.com
+// Santana Santiago santana.santiago@gmail.com
+// All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 package main
 
 import (
@@ -39,13 +45,6 @@ func verifyBinaryStrings(str ...string) error {
 	return nil
 }
 
-func firstBitSet(s string) error {
-	if s[0] != '1' {
-		return fmt.Errorf("The first digit of %v must be an 1", s)
-	}
-	return nil
-}
-
 func readByte(s string) (c byte, err error) {
 	if len(s)%8 != 0 {
 		return 0, fmt.Errorf("InputError. Length must be multiple of 8.")
@@ -73,10 +72,6 @@ func crc(poly string, msg string) (string, error) {
 		return "", err
 	}
 	
-	if err := firstBitSet(poly); err != nil {
-		return "", err
-	}
-
 	bPoly, err := readByte(poly)
 	if err != nil {
 		return "", err
@@ -102,10 +97,6 @@ func hamming(poly string) (string, error) {
 		return "", err
 	}
 	
-	if err := firstBitSet(poly); err != nil {
-		return "", err
-	}
-
 	bPoly, err := readByte(poly)
 
 	if err != nil {

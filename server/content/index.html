@@ -5,11 +5,8 @@
     <title>{{.Title}}</title>
     <link rel="stylesheet" href='http://localhost:6080/css/pure-min.css'>
     <link rel="stylesheet" href='http://localhost:6080/css/base.css'>
+    <script src="http://localhost:6080/js/crc.js" type="text/javascript"></script>
 </head>
-
-<style>
-
-</style>
 
 <body>
     {{ template "menu" .}}
@@ -30,13 +27,13 @@
                     <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
                 </div>
                 <div>
-                    <button class="pure-button" type="submit">Calcular</button>
+                    <button id="boton" class="pure-button" type='submit'>Calcular</button>
                 </div>
             </form>
         </section>
         <section>
             <header>
-                <h1>Resultados</h1>
+                <h1>Resultado</h1>
             </header>
             <div id="resultados"></div>
         </section>
