@@ -21,7 +21,7 @@ Dentro de la carpeta crc
 
 ```
 cd server
-go build server.go
+go build
 ```
 
 ## Iniciar WebApp
