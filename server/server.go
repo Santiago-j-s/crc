@@ -39,7 +39,7 @@ func handlerCrc(w http.ResponseWriter, r *http.Request) {
 	poly := r.FormValue("poly")
 	msg := r.FormValue("msg")
 
-	c, err := crc(poly, msg)
+	c, err := crc8(poly, msg)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

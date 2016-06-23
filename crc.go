@@ -5,7 +5,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package crc8 implements the 8-bit cyclic redundancy check,
+// Package crc implements the 8-bit cyclic redundancy check,
 // with the specification:
 //    Width  : 8
 //    Init   : 0000
@@ -14,7 +14,7 @@
 //    XorOut : 0000
 //
 // See http://www.ross.net/crc/crcpaper.html for more information.
-package crc8
+package crc
 
 // Size of a CRC-8 checksum in bytes.
 const Size = 2

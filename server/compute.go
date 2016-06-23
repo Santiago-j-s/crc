@@ -9,8 +9,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/Santiago-j-s/crc8"
-	"github.com/Santiago-j-s/crc8/analysis"
+	"github.com/Santiago-j-s/crc"
+	"github.com/Santiago-j-s/crc/analysis"
 	"github.com/Santiago-j-s/stringutil"
 )
 
@@ -63,15 +63,15 @@ func readByte(s string) (c byte, err error) {
 	return b, nil
 }
 
-func crc(poly string, msg string) (string, error) {
+func crc8(poly string, msg string) (string, error) {
 	if err := verifyLen(poly, 8); err != nil {
 		return "", err
 	}
-	
+
 	if err := verifyBinaryStrings(poly, msg); err != nil {
 		return "", err
 	}
-	
+
 	bPoly, err := readByte(poly)
 	if err != nil {
 		return "", err
@@ -82,7 +82,7 @@ func crc(poly string, msg string) (string, error) {
 		return "", err
 	}
 
-	tab := crc8.MakeTable(bPoly)
+	tab := crc.MakeTable(bPoly)
 	chk := tab.Sum([]byte{bMsg})
 	res := fmt.Sprintf("%08b", chk)
 	return res, nil
@@ -92,11 +92,11 @@ func hamming(poly string) (string, error) {
 	if err := verifyLen(poly, 8); err != nil {
 		return "", err
 	}
-	
+
 	if err := verifyBinaryString(poly); err != nil {
 		return "", err
 	}
-	
+
 	bPoly, err := readByte(poly)
 
 	if err != nil {
