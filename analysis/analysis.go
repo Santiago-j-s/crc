@@ -9,19 +9,19 @@
 package analysis
 
 import (
-	"github.com/Santiago-j-s/crc8"
-	"github.com/Santiago-j-s/crc8/analysis/hamming"
+	"github.com/Santiago-j-s/crc"
+	"github.com/Santiago-j-s/crc/analysis/hamming"
 )
 
 func crcMap(poly byte) map[int]byte {
-	crc := make(map[int]byte)
-	tab := crc8.MakeTable(poly)
+	crc8 := make(map[int]byte)
+	tab := crc.MakeTable(poly)
 
 	for i := 1; i < 256; i++ {
-		crc[i] = tab.Sum([]byte{byte(i)})
+		crc8[i] = tab.Sum([]byte{byte(i)})
 	}
 
-	return crc
+	return crc8
 }
 
 func HammingDistance(poly byte) map[int]int {
