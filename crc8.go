@@ -1,4 +1,6 @@
-// Copyright 2016, Dibez Pablo, Santana Santiago.
+// Copyright 2016
+// Dibez Pablo pdibez@gmail.com
+// Santana Santiago santana.santiago@gmail.com
 // All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
@@ -37,7 +39,7 @@ func MakeTable(poly byte) *Table {
 	return t
 }
 
-// Crc performs the checksum of data using the polynomial defined by the Table
+// Sum performs the checksum of data using the polynomial defined by the Table
 func (tab *Table) Sum(data []byte) byte {
 	crc := byte(0)
 	for _, v := range data {
