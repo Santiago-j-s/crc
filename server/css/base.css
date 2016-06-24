@@ -1,10 +1,28 @@
+/*
+#CFD8DC Light
+#607D8B Blue Grey
+#455A64 Dark
+#263238 Darker
+
+#A7FFEB Teal Accent
+
+black
+*/
+
 h1 {
     margin: 0.8em 0 0.5em 0;
-    color: #333;
+    color: #CFD8DC;
     font-weight: normal;
     font-family: 'Orienta', sans-serif;
     font-size: 36px;
     line-height: 40px;
+}
+
+li {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #CFD8DC;
+    list-style: none;
 }
 
 footer {
@@ -13,8 +31,12 @@ footer {
     bottom: 0;
     left: 0;
     padding: 1rem;
-    background-color: #efefef;
+    background-color: #CFD8DC;
     text-align: center;
+}
+
+body {
+    background: #607D8B;
 }
 
 body>section {
@@ -23,10 +45,90 @@ body>section {
 
 .pure-form input[type="text"] {
     margin-bottom: 1em;
+    background: inherit;
+    box-shadow: none;
+    border: none;
+    color: #263238;
+    opacity: 1;
+    border-bottom: 1px solid #263238;
+}
+
+::-webkit-input-placeholder {
+    color: #CFD8DC;
+    opacity: 0.7;
+}
+
+:-moz-placeholder {
+    color: #CFD8DC;
+    opacity: 0.5;
+}
+
+::-moz-placeholder {
+    color: #CFD8DC;
+    opacity: 0.5;
+}
+
+:-ms-input-placeholder {
+    color: #CFD8DC;
+    opacity: 0.5;
+}
+
+.pure-form input[type="text"]:focus {
+    outline:none;
+    border-color: #CFD8DC;
+    color: #CFD8DC;
+}
+
+.group {
+    position: relative;
+    margin-top: 1em;
+}
+
+.pure-form label {
+    color: #263238;
+    font-size:1em;
+    font-weight:bolder;
+    left:0.5em;
+    position: absolute;
+    top: -1.4em;
+}
+
+.pure-form input:focus + label {
+    color: #CFD8DC;
+    font-weight: bolder;
+    font-size:1.1em;
+}
+
+.pure-button {
+    background-color: #263238;
+    font-weight: bolder;
+    color: #CFD8DC;
+}
+
+.pure-button:hover, .pure-button:focus {
+    background-color: #455A64;
 }
 
 p[name="error"] {
-    color: darkred;
+    color: #263238;
     font-weight: bolder;
     padding-top: 1em;
+}
+
+.pure-menu {
+    padding: 0.5em;
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    background: #455A64
+}
+
+.pure-menu a {
+    color:#CFD8DC;
+    font-weight: bolder;
+}
+
+.pure-menu li a:hover,
+.pure-menu li a:focus {
+    background: none;
+    border: none;
+    color: #A7FFEB;
 }
