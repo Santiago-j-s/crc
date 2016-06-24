@@ -16,3 +16,17 @@ footer {
     background-color: #efefef;
     text-align: center;
 }
+
+body>section {
+    margin-left: 1em;
+}
+
+.pure-form input[type="text"] {
+    margin-bottom: 1em;
+}
+
+p[name="error"] {
+    color: darkred;
+    font-weight: bolder;
+    padding-top: 1em;
+}

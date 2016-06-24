@@ -89,12 +89,13 @@ func crc8(poly string, msg string) (string, error) {
 }
 
 func hamming(poly string) (string, error) {
-	if err := verifyLen(poly, 8); err != nil {
-		return "", err
-	}
 
 	if err := verifyBinaryString(poly); err != nil {
-		return "", err
+		return "", fmt.Errorf("El polinomio debe ser un número binario.")
+	}
+
+	if err := verifyLen(poly, 8); err != nil {
+		return "", fmt.Errorf("El polinomio debe tener 8 bits.")
 	}
 
 	bPoly, err := readByte(poly)

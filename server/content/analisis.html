@@ -10,34 +10,38 @@
 
 <body>
     {{ template "menu" . }}
-    <header>
-        <hgroup>
-            <h1>{{.Title}}</h1>
-        </hgroup>
-    </header>
-    <article>
-        <section class="pure-g">
-            <form class="pure-u-1-12 pure-form pure-form-stacked" action="/hamming" method=POST>
-                <div>
-                    <label for="poly">Ingresar P(x)</label>
-                    <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
-                </div>
-                <div>
-                    <button class="pure-button" id="boton" type="submit">Calcular</button>
-                </div>
-            </form>
-        </section>
-        <section>
-            <header>
-                <h1>Resultados</h1>
-            </header>
-            <div id="resultados"></div>
-        </section>
-    </article>
-    <footer>
-        Dibez Pablo,
-        Santana Santiago
-    </footer>
+    <section>
+        <header>
+            <hgroup>
+                <h1>{{.Title}}</h1>
+            </hgroup>
+        </header>
+        <article>
+            <section>
+                <form class="pure-form pure-form-stacked" action="/hamming" method=POST>
+                    <div class="pure-g">
+                        <div class="pure-u-5-24">
+                            <label for="poly">Ingresar P(x)</label>
+                            <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
+                        </div>
+                        <aside id="errores" class="pure-u-1-2"></aside>
+                    </div>
+                    <div>
+                        <button class="pure-button" id="boton" type="submit">Calcular</button>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <header>
+                    <h1>Resultados</h1>
+                </header>
+                <div id="resultados"></div>
+            </section>
+        </article>
+        <footer>
+            Dibez Pablo, Santana Santiago
+        </footer>
+    </section>
 </body>
 
 </html>

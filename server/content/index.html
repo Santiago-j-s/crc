@@ -10,38 +10,39 @@
 
 <body>
     {{ template "menu" .}}
-    <header>
-        <hgroup>
-            <h1>{{.Title}}</h1>
-        </hgroup>
-    </header>
-    <article>
-        <section>
-            <form class="pure-form pure-form-stacked" action="/crc" method=POST>
-                <div>
-                    <label for="msg">Ingresar Mensaje</label>
-                    <input type="text" title="Ingrese el mensaje a codificar" name="msg" id="msg" placeholder="10101010">
-                </div>
-                <div>
-                    <label for="poly">Ingresar P(x)</label>
-                    <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
-                </div>
-                <div>
-                    <button id="boton" class="pure-button" type='submit'>Calcular</button>
-                </div>
-            </form>
-        </section>
-        <section>
-            <header>
-                <h1>Resultado</h1>
-            </header>
-            <div id="resultados"></div>
-        </section>
-    </article>
-    <footer>
-        Dibez Pablo,
-        Santana Santiago
-    </footer>
+    <section>
+        <header>
+            <hgroup>
+                <h1>{{.Title}}</h1>
+            </hgroup>
+        </header>
+        <article>
+            <section>
+                <form class="pure-form pure-form-stacked" action="/crc" method=POST>
+                    <div>
+                        <label for="msg">Ingresar Mensaje</label>
+                        <input type="text" title="Ingrese el mensaje a codificar" name="msg" id="msg" placeholder="10101010">
+                    </div>
+                    <div>
+                        <label for="poly">Ingresar P(x)</label>
+                        <input title="Ingrese el polinomio" type="text" name="poly" id="poly" placeholder="11101010">
+                    </div>
+                    <div>
+                        <button id="boton" class="pure-button" type='submit'>Calcular</button>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <header>
+                    <h1>Resultado</h1>
+                </header>
+                <div id="resultados"></div>
+            </section>
+        </article>
+        <footer>
+            Dibez Pablo, Santana Santiago
+        </footer>
+    </section>
 </body>
 
 </html>
