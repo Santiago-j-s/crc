@@ -5,6 +5,8 @@
 #263238 Darker
 
 #A7FFEB Teal Accent
+
+black
 */
 
 h1 {
@@ -53,7 +55,7 @@ body>section {
 
 ::-webkit-input-placeholder {
     color: #CFD8DC;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 :-moz-placeholder {
@@ -101,6 +103,10 @@ body>section {
     background-color: #263238;
     font-weight: bolder;
     color: #CFD8DC;
+}
+
+.pure-button:hover, .pure-button:focus {
+    background-color: #455A64;
 }
 
 p[name="error"] {
