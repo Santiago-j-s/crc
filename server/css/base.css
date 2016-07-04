@@ -18,10 +18,14 @@ h1 {
     line-height: 40px;
 }
 
+h2 {
+    font-family: 'Orienta', sans-serif;
+}
+
 li {
     font-size: 16px;
     font-weight: bolder;
-    color: #CFD8DC;
+    color: black;
     list-style: none;
 }
 

@@ -11,8 +11,16 @@ import (
 
 	"github.com/Santiago-j-s/crc"
 	"github.com/Santiago-j-s/crc/analysis"
-	"github.com/Santiago-j-s/stringutil"
 )
+
+// reverse returns its argument string reversed rune-wise left to right.
+func reverse(s string) string {
+	r := []rune(s)
+	for i, j := 0, len(r)-1; i < len(r)/2; i, j = i+1, j-1 {
+		r[i], r[j] = r[j], r[i]
+	}
+	return string(r)
+}
 
 // verifyLen returns an error if s is not of length l
 func verifyLen(s string, l int) error {
@@ -51,7 +59,7 @@ func readByte(s string) (c byte, err error) {
 	}
 
 	var b byte
-	reversed := stringutil.Reverse(s)
+	reversed := reverse(s)
 
 	for i, ch := range reversed {
 		if ch == '1' {
